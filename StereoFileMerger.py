@@ -1,5 +1,3 @@
-from tkinter import messagebox
-from tkinter import filedialog
 import tkinter as tk
 from openpyxl import Workbook
 from openpyxl.compat import range
@@ -16,7 +14,7 @@ from tkinter import simpledialog
 import tkinter
 
 
-def main(bob):
+def main(folder_path):
 
     row_number_main = 1 
     main_file = Workbook()
@@ -27,8 +25,8 @@ def main(bob):
     cava_list = []
     probe_list = []
 
-    for fn in os.listdir(bob):
-        fn = bob + "\\" + fn
+    for fn in os.listdir(folder_path):
+        fn = folder_path + "\\" + fn
         if "xlsx" in fn:
             filter_files_by_probe(fn, cava_list, probe_list)
 
@@ -49,12 +47,12 @@ def main(bob):
 
 def select_folder():
     
-    bob = filedialog.askdirectory()
-    bob = bob.replace("/" , "\\")
-    print (bob)
-    if bob != None:     
-        messagebox.showinfo("Please Wait...", "Merging stereology data from folder " + bob)
-        main(bob)
+    folder_path = filedialog.askdirectory()
+    folder_path = folder_path.replace("/" , "\\")
+    print (folder_path)
+    if folder_path != None:     
+        messagebox.showinfo("Please Wait...", "Merging stereology data from folder " + folder_path)
+        main(folder_path)
     else:
         messagebox.showinfo("ERROR!", "Please select a valid folder")
 
